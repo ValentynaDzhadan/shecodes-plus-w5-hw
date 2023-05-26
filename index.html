@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 5</title>
   </head>
+
   <body>
-    <script></script>
+    <h1>Geolocation API</h1>
+    <script>
+      function showPosition(position) {
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+      }
+      navigator.geolocation.getCurrentPosition(showPosition);
+    </script>
   </body>
 </html>

@@ -4,8 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 5</title>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
-    <script></script>
+    <h1>AJAX</h1>
+    <p>Programmer -> API -> Application</p>
+    <script>
+      function displayUsername(response) {
+        console.log(response.data.username);
+
+        let h1 = document.querySelector("h1");
+        h1.innerHTML = `Hey ${response.data.username}`;
+      }
+      let apiUrl = "https://jsonplaceholder.typicode.com/users/3";
+
+      axios.get(apiUrl).then(displayUsername);
+    </script>
   </body>
 </html>

@@ -4,8 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 5</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
-    <script></script>
+    <h1>JavaScript Open Weather API</h1>
+
+    <h3>JS Challenge 1</h3>
+    <p>Import Axios</p>
+
+    <h3>JS Challenge 2</h3>
+    <p>Get your API key and save in a variable called apiKey</p>
+
+    <h3>JS Challenge 3</h3>
+    <p>Get the API response for the weather in Sydney, using metrics unit</p>
+
+    <h3>JS Challenge 4</h3>
+    <p>Log the current temperature in Sydney</p>
+
+    <h3>JS Challenge 5</h3>
+    <p>
+      Replace the h1 of this page with the weather in Sydney: i.e: It is 19
+      degrees in Sydney
+    </p>
+    <script>
+      //challenge1
+      let city = "Sydney";
+
+      //challenge2
+      let apiKey = "b40b135798f82a05aed08769f9275f50";
+
+      //challenge3
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+      function showSydneyWeather(response) {
+        console.log(response.data);
+      }
+      axios.get(apiUrl).then(showSydneyWeather);
+
+      //challenge4
+      function showCurrentTemp(response) {
+        let currentTemp = Math.round(response.data.main.temp);
+        console.log(currentTemp);
+        replaceH1(currentTemp);
+      }
+      axios.get(apiUrl).then(showCurrentTemp);
+
+      //challenge5
+      function replaceH1(temp) {
+        let h1 = document.querySelector("h1");
+        h1.innerHTML = `It is ${temp} degrees in ${city}`;
+      }
+    </script>
   </body>
 </html>

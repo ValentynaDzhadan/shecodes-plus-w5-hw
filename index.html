@@ -3,17 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <title>Week 5</title>
   </head>
 
   <body>
-    <h1>Geolocation API</h1>
+    <h1>JavaScript Geolocation API</h1>
+
+    <h3>JS Challenge 1</h3>
+    <p>Log your current latitude and longitude using the Geolocation API</p>
+
+    <h3>JS Challenge 2</h3>
+    <p>Log the current temperature where you are.</p>
+
+    <h3>JS Challenge 3</h3>
+    <p>Change the h1 of this page by the current temperature</p>
     <script>
+      //challenge 1
       function showPosition(position) {
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        console.log(lat);
+        console.log(lon);
+
+        let apiKey = "b40b135798f82a05aed08769f9275f50";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(getCurrentTemp);
       }
+
       navigator.geolocation.getCurrentPosition(showPosition);
+
+      //challenge 2
+      function getCurrentTemp(response) {
+        let currentTemp = Math.round(response.data.main.temp);
+        console.log(currentTemp);
+        changeH1(currentTemp);
+      }
+
+      //challenge 3
+      function changeH1(temp) {
+        let h1 = document.querySelector("h1");
+        h1.innerHTML = `The current temperature in your location is ${temp}`;
+      }
     </script>
   </body>
 </html>

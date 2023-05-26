@@ -10,15 +10,18 @@
     <h1>AJAX</h1>
     <p>Programmer -> API -> Application</p>
     <script>
-      function displayUsername(response) {
-        console.log(response.data.username);
+      //challenge 2
 
-        let h1 = document.querySelector("h1");
-        h1.innerHTML = `Hey ${response.data.username}`;
+      let apiUrl = "https://jsonplaceholder.typicode.com/comments";
+      function showComments(response) {
+        console.log(response.data);
+
+        //challenge 3
+        let firstCommentEmail = response.data[0].email;
+        console.log(firstCommentEmail);
       }
-      let apiUrl = "https://jsonplaceholder.typicode.com/users/3";
 
-      axios.get(apiUrl).then(displayUsername);
+      axios.get(apiUrl).then(showComments);
     </script>
   </body>
 </html>
